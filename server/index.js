@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 
 // Import your routers here
-const productOverview = require('./routes/productOverview.js');
+const productOverviewRouter = require('./routes/productOverview.js');
 
 app.use(cors());
 app.use(express.json());
