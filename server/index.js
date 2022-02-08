@@ -7,8 +7,8 @@ const port = 3000;
 const fs = require('fs');
 
 // Import your routers here
-const productOverviewRouter = require('./routes/productOverview.js');
-const reviewsRouter = require('./routes/reviews.js');
+// const productOverviewRouter = require('./routes/productOverview.js');
+// const reviewsRouter = require('./routes/reviews.js');
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +18,15 @@ app.use("/", expressStaticGzip(path.join(__dirname, '../client/dist'), {
 }));
 
 // Place your routers
-app.use('/productOverview', productOverviewRouter);
-app.use('/reviews', reviewsRouter);
+// app.use('/productOverview', productOverviewRouter);
+// app.use('/reviews', reviewsRouter);
 
-app.listen(port, () => console.log('Listening on:', port));
+app.get('/reviews', (req, res) => {
+  res.send({response: 'reviews get'});
+})
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => console.log('Listening on:', port));
+}
+
+module.exports = app;

@@ -31,3 +31,9 @@ const photoSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
+const Product = mongoose.model('Product', productSchema);
+
+const Photo = mongoose.model('Photo', photoSchema);
+
+
+
