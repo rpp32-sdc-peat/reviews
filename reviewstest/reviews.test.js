@@ -8,7 +8,7 @@ describe('test example', () => {
     // .expect('Content-Type', /json/)
     .expect(200)
     .expect((res) => {
-      res.text = 'reviews get';
+      res.text = 'REVIEWS: GET';
     })
     .end((err, res) => {
       if (err) return done(err);
