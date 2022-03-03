@@ -40,15 +40,19 @@ const Photo = mongoose.model('Photo', photoSchema);
 const getReviews = (product_id, sort, limit) => {
   // return Review.findOne({product_id: 12});
   if (sort === 'newest') {
-    return Review.find({product_id: product_id}).sort({date: -1}).limit(limit);
+    return Review.find({product_id: Number(product_id)}).sort({date: -1}).limit(Number(limit));
 
   } else if (sort === 'helpful') {
-    return Review.find({product_id: product_id}).sort({helpfulness: -1}).limit(limit);
+    return Review.find({product_id: Number(product_id)}).sort({helpfulness: -1}).limit(Number(limit));
   }
 }
 
-const getProduct = () => {
-  return Product.findOne({id: 5});
+const getReviewsMeta = (product_id) => {
+  return Review.find({product_id: Number(product_id)});
+}
+
+const getProduct = (id) => {
+  return Product.findOne({id: Number(id)});
 }
 
 const postReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
@@ -64,3 +68,4 @@ const postReview = (product_id, rating, summary, body, recommend, name, email, p
 module.exports.getReviews = getReviews;
 module.exports.getProduct = getProduct;
 module.exports.postReview = postReview;
+module.exports.getReviewsMeta = getReviewsMeta;
