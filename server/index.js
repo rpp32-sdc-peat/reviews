@@ -115,4 +115,4 @@ app.post('/reviews', (req, res) => {
 
 app.use(productsRouter);
 
-// app.listen(port, () => console.log('Listening on:', port));
+app.listen(port, () => console.log('Listening on:', port));
