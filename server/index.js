@@ -12,6 +12,8 @@ const db = require('../dbs/reviewsdb.js');
 // const productOverviewRouter = require('./routes/productOverview.js');
 // const questionsAndAnswersRouter = require('./routes/questionsAndAnswers.js')
 // const reviewsRouter = require('./routes/reviews.js');
+const productsRouter = require('./routes/products.js')
+
 
 app.use(cors());
 app.use(express.json());
@@ -111,3 +113,6 @@ app.post('/reviews', (req, res) => {
 // app.use('/qa', questionsAndAnswersRouter);
 // app.use('/reviews', reviewsRouter);
 
+app.use(productsRouter);
+
+// app.listen(port, () => console.log('Listening on:', port));
