@@ -1,22 +1,13 @@
-const reviewsRouter = require('express').Router();
+const router = require('express').Router();
 const express = require('express');
 const proxy = require('express-http-proxy');
 
-const { reviews } = require('../controllers/reviews.js');
-const { getReviews, getProduct, getReviewsMeta, createReview } = reviews;
+const controller = require('../controllers/reviews.js')
 
-// reviewsRouter.route('/reviews')
-//   .get((req, res) => {proxy(getReviews(req, res))})
-//   .post((req, res) => {proxy(createReview(req, res))})
+router.get('/reviews', controller.getReviews);
 
-reviewsRouter.get('/', (req, res) => {
-  console.log('reviews');
-  res.status(200).send('REVIEWS: GET');
-});
+router.get('/reviews/meta', controller.getReviewsMeta);
 
-reviewsRouter.post('/', (req, res) => {
-  console.log('reviews');
-  res.status(201).end('REVIEWS: POST');
-});
+router.post('/reviews', controller.createReview);
 
-module.exports = reviewsRouter;
+module.exports = router;

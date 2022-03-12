@@ -4,7 +4,6 @@ const router = require('express').Router();
 const proxy = require('express-http-proxy');
 
 const controller = require('../controllers/products.js')
-// const { getProduct } = products;
 
 router.get('/products', controller.getProduct);
 

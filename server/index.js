@@ -12,8 +12,8 @@ const db = require('../dbs/reviewsdb.js');
 // const productOverviewRouter = require('./routes/productOverview.js');
 // const questionsAndAnswersRouter = require('./routes/questionsAndAnswers.js')
 // const reviewsRouter = require('./routes/reviews.js');
-const productsRouter = require('./routes/products.js')
-
+const productsRouter = require('./routes/products.js');
+const reviewsRouter = require('./routes/reviews.js');
 
 app.use(cors());
 app.use(express.json());
@@ -82,7 +82,6 @@ app.get('/reviews/meta', (req, res) => {
     console.log(resObj);
 
     res.send(resObj);
-    // res.send({product_id: req.query.product_id.toString(), ratings: {1: ratingCounter(result, 1), 2: ratingCounter(result, 2), 3: ratingCounter(result, 3), 4: ratingCounter(result, 4), 5: ratingCounter(result, 5)}, recommended: {false: recommendCounter(result, 'false'), true: recommendCounter(result, 'true')}});
   })
   .catch(err => {
     console.log(err);
@@ -100,8 +99,6 @@ app.get('/products', (req, res) => {
   })
 })
 
-//product_id, rating, summary, body, recommend, name, email, photos, characteristics)
-
 app.post('/reviews', (req, res) => {
   console.log(req.body);
   db.postReview(req.body.product_id, req.body.rating, req.body.summary, req.body.body, req.body.recommend, req.body.name, req.body.email, req.body.photos, req.body.characteristics);
@@ -114,5 +111,6 @@ app.post('/reviews', (req, res) => {
 // app.use('/reviews', reviewsRouter);
 
 app.use(productsRouter);
+app.use(reviewsRouter);
 
 app.listen(port, () => console.log('Listening on:', port));
