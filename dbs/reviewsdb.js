@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://54.92.135.36:27017/sdc');
+mongoose.connect('mongodb://ted:ted@54.92.135.36:27017/sdc');
 
 const productSchema = new mongoose.Schema({
   id: {type: Number, unique: true},
