@@ -12,8 +12,8 @@ const db = require('../dbs/reviewsdb.js');
 // const productOverviewRouter = require('./routes/productOverview.js');
 // const questionsAndAnswersRouter = require('./routes/questionsAndAnswers.js')
 // const reviewsRouter = require('./routes/reviews.js');
-const productsRouter = require('./routes/products.js');
-const reviewsRouter = require('./routes/reviews.js');
+// const productsRouter = require('./routes/products.js');
+// const reviewsRouter = require('./routes/reviews.js');
 
 app.use(cors());
 app.use(express.json());
@@ -26,8 +26,10 @@ app.use("/", expressStaticGzip(path.join(__dirname, '../client/dist'), {
 // app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/reviews', (req, res) => {
+  console.log('get reviews works deployment');
   db.getReviews(req.query.product_id, req.query.sort, req.query.count)
   .then(result => {
+    console.log('get reviews works deployment then block');
     res.send({results: result});
   })
   .catch(err => {
@@ -110,7 +112,7 @@ app.post('/reviews', (req, res) => {
 // app.use('/qa', questionsAndAnswersRouter);
 // app.use('/reviews', reviewsRouter);
 
-app.use(productsRouter);
-app.use(reviewsRouter);
+// app.use(productsRouter);
+// app.use(reviewsRouter);
 
 app.listen(port, () => console.log('Listening on:', port));

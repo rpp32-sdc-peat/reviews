@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://ted:ted@54.92.135.36:27017/sdc');
+mongoose.connect('mongodb://ted:ted@54.92.135.36:27017/sdc')
+.then(db => {
+  console.log(`Connected to mongo`)
+})
+.catch(err => {
+  console.log(`There was a problem connecting to mongo`);
+  console.log(err);
+});
+
 
 const productSchema = new mongoose.Schema({
   id: {type: Number, unique: true},
@@ -40,10 +48,10 @@ const Photo = mongoose.model('Photo', photoSchema);
 const getReviews = (product_id, sort, limit) => {
   // return Review.findOne({product_id: 12});
   if (sort === 'newest') {
-    return Review.find({product_id: Number(product_id)}).sort({date: -1}).limit(Number(limit));
+    return Review.findOne({product_id: Number(product_id)});
 
   } else if (sort === 'helpful') {
-    return Review.find({product_id: Number(product_id)}).sort({helpfulness: -1}).limit(Number(limit));
+    return Review.findOne({product_id: Number(product_id)});
   }
 }
 
@@ -64,6 +72,8 @@ const postReview = (product_id, rating, summary, body, recommend, name, email, p
     }
   })
 }
+
+
 
 module.exports.getReviews = getReviews;
 module.exports.getProduct = getProduct;
