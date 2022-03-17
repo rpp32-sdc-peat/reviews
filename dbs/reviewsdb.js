@@ -48,10 +48,10 @@ const Photo = mongoose.model('Photo', photoSchema);
 const getReviews = (product_id, sort, limit) => {
   // return Review.findOne({product_id: 12});
   if (sort === 'newest') {
-    return Review.find({product_id: Number(product_id)}).sort({date: -1}).limit(Number(limit));
+    return Review.findOne({product_id: Number(product_id)});
 
   } else if (sort === 'helpful') {
-    return Review.find({product_id: Number(product_id)}).sort({helpfulness: -1}).limit(Number(limit));
+    return Review.findOne({product_id: Number(product_id)});
   }
 }
 
