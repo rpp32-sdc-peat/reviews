@@ -48,7 +48,7 @@ const Photo = mongoose.model('Photo', photoSchema);
 const getReviews = (product_id, sort, limit) => {
   // return Review.findOne({product_id: 12});
   if (sort === 'newest') {
-    return Review.findOne({product_id: Number(product_id)});
+    return Review.findOne({product_id: Number(product_id)}).lean();
 
   } else if (sort === 'helpful') {
     return Review.findOne({product_id: Number(product_id)});
