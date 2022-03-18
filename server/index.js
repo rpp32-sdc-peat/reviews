@@ -29,7 +29,7 @@ app.get('/reviews', (req, res) => {
   console.log('get reviews works deployment');
   db.getReviews(req.query.product_id, req.query.sort, req.query.count)
   .then(result => {
-    console.log('get reviews works deployment then block', result);
+    console.log('get reviews works deployment then block');
     res.send({results: result});
   })
   .catch(err => {
